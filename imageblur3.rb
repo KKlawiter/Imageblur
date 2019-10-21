@@ -15,41 +15,20 @@ class Image
   
   def blur
     ones= []
-    @picture.each_with_index do |rows, row|
-        rows.each_with_index do |num, col|
-          ones << [row, col] if num == 1
+    3.times{
+      @picture.each_with_index do |rows, row|
+          rows.each_with_index do |num, col|
+            ones << [row, col] if num == 1
+          end
         end
+        ones.each do |row, col|
+        @picture[row -1][col]=1 if row -1 >= 0
+        @picture[row +1][col]=1 if row +1 < num_rows
+        @picture[row][col -1]=1 if col -1 >= 0
+        @picture[row][col +1]=1 if col +1 < num_cols
       end
-      ones.each do |row, col|
-      @picture[row -1][col]=1 if row -1 >= 0
-      @picture[row +1][col]=1 if row +1 < num_rows
-      @picture[row][col -1]=1 if col -1 >= 0
-      @picture[row][col +1]=1 if col +1 < num_cols
-    end
-    puts 
-    @picture.each_with_index do |rows, row|
-        rows.each_with_index do |num, col|
-          ones << [row, col] if num == 1
-        end
-      end
-      ones.each do |row, col|
-      @picture[row -1][col]=1 if row -1 >= 0
-      @picture[row +1][col]=1 if row +1 < num_rows
-      @picture[row][col -1]=1 if col -1 >= 0
-      @picture[row][col +1]=1 if col +1 < num_cols
-    end
-    puts 
-    @picture.each_with_index do |rows, row|
-        rows.each_with_index do |num, col|
-          ones << [row, col] if num == 1
-        end
-      end
-      ones.each do |row, col|
-      @picture[row -1][col]=1 if row -1 >= 0
-      @picture[row +1][col]=1 if row +1 < num_rows
-      @picture[row][col -1]=1 if col -1 >= 0
-      @picture[row][col +1]=1 if col +1 < num_cols
-    end
+      puts 
+    }
   end
   
 
